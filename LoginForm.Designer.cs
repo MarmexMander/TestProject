@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApp17
+﻿namespace TestProject
 {
     partial class Login_Form
     {
