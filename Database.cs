@@ -1,12 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject
-{
+namespace TestProject { 
+
     class Database
     {
+        static string getHash(string str)
+        {
+            HashAlgorithm hAlg = HashAlgorithm.Create(HashAlgorithmName.SHA256.Name);
+            return BitConverter.ToString(hAlg.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str))).Replace("-", "");
+        }
+        static string connectionstr = "Data Source=WorkingDataBase.mssql.somee.com;Initial Catalog=WorkingDataBase;Persist Security Info=True;User ID=Qwertytrewq123_SQLLogin_2;Password=yz9ic6ap3t";
+        public class User
+        {
+
+            public static bool register(string FullName, string address, string email, string pos, string dep, string phone, double wage, int reprCount, string pwd)
+            {
+                pwd = getHash(pwd);
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($"Insert into users(FullName, Addres, Email, Position, Department, PhoneNumber, Wage, ReprimantQuantity, Password) VALUES('{FullName}','{address}','{email}','{pos}','{dep}','{phone}','{wage}','{reprCount}','{pwd}')", sqlConnection);
+
+                DataTable dt = new DataTable();
+                try
+                {
+                    sql.Fill(dt);
+                }
+                catch
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
+
+                return true;
+            }
+
+        }
     }
+
 }
