@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject { 
+namespace TestProject {
 
     class Database
     {
@@ -17,7 +17,7 @@ namespace TestProject {
             return BitConverter.ToString(hAlg.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str))).Replace("-", "");
         }
         static string connectionstr = "Data Source=WorkingDataBase.mssql.somee.com;Initial Catalog=WorkingDataBase;Persist Security Info=True;User ID=Qwertytrewq123_SQLLogin_2;Password=yz9ic6ap3t";
-        public class User
+        public class Users
         {
 
             public static bool register(string FullName, string address, string email, string pos, string dep, string phone, double wage, int reprCount, string pwd)
@@ -41,6 +41,25 @@ namespace TestProject {
                 return true;
             }
 
+        }
+
+        public class User
+        {
+            int id, ReprimentQuantity;
+            string FullName, Addres, Email, Position, Departament, PhoneNumber, Password;
+            bool Role;
+            float Wage, Hours;
+            public User(int id)
+            {
+                
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select * from users where Id = "+id, sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                reader.Read();
+                //id = reader["Id"];
+
+            }
         }
     }
 
