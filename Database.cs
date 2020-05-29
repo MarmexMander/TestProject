@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -57,8 +58,18 @@ namespace TestProject {
                 SqlCommand sql = new SqlCommand($"Select * from users where Id = "+id, sqlConnection);
                 SqlDataReader reader = sql.ExecuteReader();
                 reader.Read();
-                //id = reader["Id"];
-
+                this.id = (int)reader["Id"];
+                ReprimentQuantity = (int)reader["ReprimentQantity"];
+                FullName = reader["FullName"].ToString();
+                Addres = reader["Addres"].ToString();
+                Email = reader["Email"].ToString();
+                Position = reader["Position"].ToString();
+                Departament = reader["Departament"].ToString();
+                PhoneNumber = reader["PhoneNumber"].ToString();
+                Password = reader["Password"].ToString();
+                Role = (bool)reader["Role"];
+                Wage = (float)reader["Wage"];
+                Hours = (float)reader["Hours"];
             }
         }
     }
