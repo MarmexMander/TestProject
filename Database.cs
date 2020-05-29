@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace TestProject {
 
@@ -94,6 +95,36 @@ namespace TestProject {
                 Role = (bool)reader["Role"];
                 Wage = (float)reader["Wage"];
                 Hours = (float)reader["Hours"];
+            }
+            static public int getIdByEmail(string email)
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select id from users where Email = " + email, sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                reader.Read();
+                return (int)reader["Id"];
+            }
+
+            public bool Save()
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = {FullName}, Role = {Role}, Addres = {Addres}, Email = {Email}, Position = {Position}, Department = {Departament}, PhoneNumber = {PhoneNumber}, Wage = {Wage}, Hours = {Hours}, ReprimantQuantity = {ReprimentQuantity}, Password = {Password}", sqlConnection);
+                try {
+                    sqlCmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
+                return true;
+            }
+
+            public bool AddTime(float time){
+                Hours += time;
+                return Save();
             }
         }
     }
