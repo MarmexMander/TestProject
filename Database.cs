@@ -22,7 +22,7 @@ namespace TestProject {
         public class Users
         {
 
-           public static bool register(string FullName,string Role, string address, string email, string pos, string dep, string phone, double wage,int Hours, int reprCount, string pwd)
+           public static bool register(string FullName,bool Role, string address, string email, string pos, string dep, string phone, float wage,float Hours, int reprCount, string pwd)
             {
                 pwd = getHash(pwd);
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
@@ -71,10 +71,154 @@ namespace TestProject {
 
         public class User
         {
-            int id, ReprimentQuantity;
-            string FullName, Addres, Email, Position, Departament, PhoneNumber, Password;
-            bool Role;
-            float Wage, Hours;
+            int id, reprimentQuantity;
+            string fullName, addres, email, position, departament, phoneNumber, password;
+            bool role;
+            float wage, hours;
+
+            string FullName
+            {
+                get
+                {
+                    return fullName;
+                }
+                set
+                {
+                    fullName = value;
+                }
+            }
+            string Addres
+            {
+                get
+                {
+                    return addres;
+                }
+                set
+                {
+                    addres = value;
+                }
+            }
+            string Email
+            {
+                get
+                {
+                    return email;
+                }
+                set
+                {
+                    email = value;
+                }
+            }
+            string Position
+            {
+                get
+                {
+                    return position;
+                }
+                set
+                {
+                    position = value;
+                }
+            }
+            string Departament
+            {
+                get
+                {
+                    return departament;
+                }
+                set
+                {
+                    departament = value;
+                }
+            }
+            string PhoneNumber
+            {
+                get
+                {
+                    return phoneNumber;
+                }
+                set
+                {
+                    phoneNumber = value;
+                }
+            }
+            string Password
+            {
+                get
+                {
+                    return password;
+                }
+                set
+                {
+                    password = value;
+                }
+            }
+            bool Role
+            {
+                get
+                {
+                    return role;
+                }
+                set
+                {
+                    role = value;
+                }
+            }
+            float Wage
+            {
+                get
+                {
+                    return wage;
+                }
+                set
+                {
+                    wage = value;
+                }
+            }
+            float Hours
+            {
+                get
+                {
+                    return hours;
+                }
+                set
+                {
+                    hours = value;
+                }
+            }
+            int Id
+            {
+                get
+                {
+                    return id;
+                }
+            }
+            int ReprimentQuantity
+            {
+                get
+                {
+                    return reprimentQuantity;
+                }
+                set
+                {
+                    reprimentQuantity = value;
+                }
+            }
+            public User()
+            {
+                this.id = -1;
+                reprimentQuantity = 0;
+                fullName = "";
+                addres = "";
+                email = "";
+                position = "";
+                departament = "";
+                phoneNumber = "";
+                password = "";
+                role = false;
+                wage = 0;
+                hours = 0;
+            }
             public User(int id)
             {
                 
@@ -84,17 +228,17 @@ namespace TestProject {
                 SqlDataReader reader = sql.ExecuteReader();
                 reader.Read();
                 this.id = (int)reader["Id"];
-                ReprimentQuantity = (int)reader["ReprimentQantity"];
-                FullName = reader["FullName"].ToString();
-                Addres = reader["Addres"].ToString();
-                Email = reader["Email"].ToString();
-                Position = reader["Position"].ToString();
-                Departament = reader["Departament"].ToString();
-                PhoneNumber = reader["PhoneNumber"].ToString();
-                Password = reader["Password"].ToString();
-                Role = (bool)reader["Role"];
-                Wage = (float)reader["Wage"];
-                Hours = (float)reader["Hours"];
+                reprimentQuantity = (int)reader["ReprimentQantity"];
+                fullName = reader["FullName"].ToString();
+                addres = reader["Addres"].ToString();
+                email = reader["Email"].ToString();
+                position = reader["Position"].ToString();
+                departament = reader["Departament"].ToString();
+                phoneNumber = reader["PhoneNumber"].ToString();
+                password = reader["Password"].ToString();
+                role = (bool)reader["Role"];
+                wage = (float)reader["Wage"];
+                hours = (float)reader["Hours"];
             }
             static public int getIdByEmail(string email)
             {
@@ -108,22 +252,30 @@ namespace TestProject {
 
             public bool Save()
             {
-                SqlConnection sqlConnection = new SqlConnection(connectionstr);
-                sqlConnection.Open();
-                SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = {FullName}, Role = {Role}, Addres = {Addres}, Email = {Email}, Position = {Position}, Department = {Departament}, PhoneNumber = {PhoneNumber}, Wage = {Wage}, Hours = {Hours}, ReprimantQuantity = {ReprimentQuantity}, Password = {Password}", sqlConnection);
-                try {
-                    sqlCmd.ExecuteNonQuery();
-                }
-                catch
+                if (id == -1)
                 {
-                    sqlConnection.Close();
-                    return false;
+                    return Users.register(fullName,role,addres,email,position,departament,phoneNumber,wage,hours,reprimentQuantity,password);
                 }
-                return true;
+                else
+                {
+                    SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                    sqlConnection.Open();
+                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = {fullName}, Role = {role}, Addres = {addres}, Email = {email}, Position = {position}, Department = {departament}, PhoneNumber = {phoneNumber}, Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = {password}", sqlConnection);
+                    try
+                    {
+                        sqlCmd.ExecuteNonQuery();
+                    }
+                    catch
+                    {
+                        sqlConnection.Close();
+                        return false;
+                    }
+                    return true;
+                }
             }
 
             public bool AddTime(float time){
-                Hours += time;
+                hours += time;
                 return Save();
             }
         }
