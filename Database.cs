@@ -15,7 +15,7 @@ namespace TestProject {
     {
         static string getHash(string str)
         {
-            HashAlgorithm hAlg = HashAlgorithm.Create(HashAlgorithmName.SHA256.Name);
+            HashAlgorithm hAlg = HashAlgorithm.Create("SHA256");
             return BitConverter.ToString(hAlg.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str))).Replace("-", "");
         }
         static string connectionstr = "Data Source=WorkingDataBase.mssql.somee.com;Initial Catalog=WorkingDataBase;Persist Security Info=True;User ID=Qwertytrewq123_SQLLogin_2;Password=yz9ic6ap3t";
@@ -49,7 +49,7 @@ namespace TestProject {
                 using (SqlConnection conn = new SqlConnection(connectionstr))
                 {
                     pwd = getHash(pwd);
-                    string sql = @"select * from  users where 'Email' = 'email' and 'Password' = 'pwd'";
+                    string sql = $"select * from  users where 'Email' = {email} and 'Password' = {pwd}";
                     SqlCommand comm = new SqlCommand(sql, conn);
                     try
                     {
