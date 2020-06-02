@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -122,7 +123,7 @@ namespace TestProject {
             string fullName, addres, email, position, departament, phoneNumber, password;
             bool role;
             float wage, hours;
-
+            Stopwatch stopwatch = new Stopwatch();
             public string FullName
             {
                 get
@@ -324,6 +325,26 @@ namespace TestProject {
             public bool AddTime(float time){
                 hours += time;
                 return Save();
+            }
+
+            public bool logout()
+            {
+                stopwatch.Stop();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({id}, 'logout')", sqlConnection);
+                DataTable dt = new DataTable();
+                try
+                {
+                    sql.Fill(dt);
+                }
+                catch
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
+                sqlConnection.Close();
+                return AddTime((float)stopwatch.Elapsed.TotalHours);
             }
         }
     }
