@@ -1,4 +1,4 @@
-﻿namespace Admin_Form
+﻿namespace TestProject
 {
     partial class Form1
     {
