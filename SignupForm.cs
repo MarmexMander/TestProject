@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp17
+namespace TestProject
 {
     public partial class SignupForm : Form
     {
         public SignupForm()
         {
             InitializeComponent();
+            Database.User.register("mykola", "adres", "e-mail", "1", "2", "phone", 100, "test");
         }
     }
 }
