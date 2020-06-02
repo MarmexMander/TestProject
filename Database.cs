@@ -19,6 +19,7 @@ namespace TestProject {
             return BitConverter.ToString(hAlg.ComputeHash(System.Text.Encoding.UTF8.GetBytes(str))).Replace("-", "");
         }
         static string connectionstr = "Data Source=WorkingDataBase.mssql.somee.com;Initial Catalog=WorkingDataBase;Persist Security Info=True;User ID=Qwertytrewq123_SQLLogin_2;Password=yz9ic6ap3t";
+
         public class Users
         {
 
@@ -42,6 +43,7 @@ namespace TestProject {
 
                 return true;
             }
+
             public static bool login(string email, string pwd)
             {
                 using (SqlConnection conn = new SqlConnection(connectionstr))
@@ -67,6 +69,51 @@ namespace TestProject {
 
             }
 
+            public static int calcWage(int userID)
+            {
+                User user = new User(userID);
+                return (int)(user.Wage * user.Hours);
+
+            }
+
+            public static bool logout(int userID)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionstr);
+            sqlConnection.Open();
+            SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({userID}, 'logout')", sqlConnection);
+            DataTable dt = new DataTable();
+            try
+            {
+                sql.Fill(dt);
+            }
+            catch
+            {
+                sqlConnection.Close();
+                return false;
+            }
+            sqlConnection.Close();
+            return true;
+        }
+
+            public static bool remove(int userID)
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($@"delete from users where id = {userID}", sqlConnection);
+                DataTable dt = new DataTable();
+                try
+                {
+                    sql.Fill(dt);
+                }
+                catch
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
+                sqlConnection.Close();
+                return true;
+            }
+
         }
 
         public class User
@@ -76,7 +123,7 @@ namespace TestProject {
             bool role;
             float wage, hours;
 
-            string FullName
+            public string FullName
             {
                 get
                 {
@@ -87,7 +134,7 @@ namespace TestProject {
                     fullName = value;
                 }
             }
-            string Addres
+            public string Addres
             {
                 get
                 {
@@ -98,7 +145,7 @@ namespace TestProject {
                     addres = value;
                 }
             }
-            string Email
+            public string Email
             {
                 get
                 {
@@ -109,7 +156,7 @@ namespace TestProject {
                     email = value;
                 }
             }
-            string Position
+            public string Position
             {
                 get
                 {
@@ -120,7 +167,7 @@ namespace TestProject {
                     position = value;
                 }
             }
-            string Departament
+            public string Departament
             {
                 get
                 {
@@ -131,7 +178,7 @@ namespace TestProject {
                     departament = value;
                 }
             }
-            string PhoneNumber
+            public string PhoneNumber
             {
                 get
                 {
@@ -142,7 +189,7 @@ namespace TestProject {
                     phoneNumber = value;
                 }
             }
-            string Password
+            public string Password
             {
                 get
                 {
@@ -153,7 +200,7 @@ namespace TestProject {
                     password = value;
                 }
             }
-            bool Role
+            public bool Role
             {
                 get
                 {
@@ -164,7 +211,7 @@ namespace TestProject {
                     role = value;
                 }
             }
-            float Wage
+            public float Wage
             {
                 get
                 {
@@ -175,7 +222,7 @@ namespace TestProject {
                     wage = value;
                 }
             }
-            float Hours
+            public float Hours
             {
                 get
                 {
@@ -186,14 +233,14 @@ namespace TestProject {
                     hours = value;
                 }
             }
-            int Id
+            public int Id
             {
                 get
                 {
                     return id;
                 }
             }
-            int ReprimentQuantity
+            public int ReprimentQuantity
             {
                 get
                 {
