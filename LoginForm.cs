@@ -30,8 +30,9 @@ namespace TestProject
                     MessageBox.Show("Неправильное имя пользователя или пароль");
                 else
                 {
-                    Profile profile = new Profile(user);
+                    Profile profile = new Profile(user, this);
                     profile.Show();
+                    this.Visible = false;
                 }
             }
         }

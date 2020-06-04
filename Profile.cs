@@ -12,18 +12,30 @@ namespace TestProject
 {
     public partial class Profile : Form
     {
-        public Profile(Database.User user)
+        Form parent;
+        Database.User User;
+        public Profile(Database.User user, Form form)
         {
             InitializeComponent();
             fioLabel.Text = user.FullName;
             addressLabel.Text = user.Addres;
             telNumberLabel.Text = user.PhoneNumber;
             emailLabel.Text = user.Email;
+            departmentLabel.Text = user.Departament;
+            positionLabel.Text = user.Position;
+            hoursLabel.Text = user.Hours.ToString();
+            reprimantQuantituLabel.Text = user.ReprimentQuantity.ToString();
+            salaryLabel.Text = "хз";
+
+            User = user;
+            parent = form;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            User.logout();
+            parent.Visible = true;
+            this.Close();
         }
     }
 }
