@@ -57,7 +57,6 @@ namespace TestProject
                     {
                         conn.Open();
                         comm.ExecuteNonQuery();
-                        MessageBox.Show("true");
                         return true;
                     }
                     catch (Exception ex)
