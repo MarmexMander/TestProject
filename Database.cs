@@ -94,7 +94,7 @@ namespace TestProject {
             }
             sqlConnection.Close();
             return true;
-        }
+            }
 
             public static bool remove(int userID)
             {
@@ -113,6 +113,23 @@ namespace TestProject {
                 }
                 sqlConnection.Close();
                 return true;
+            }
+            public static List<User> GetUsers()
+            {
+                List<User> users = new List<User>();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select id from users", sqlConnection);
+                
+                SqlDataReader reader = sql.ExecuteReader();
+                while (reader.Read())
+                {
+                    users.Add(new User((int)reader["id"]));
+
+                }
+                return users;
+
+               
             }
 
         }
@@ -353,6 +370,7 @@ namespace TestProject {
                 sqlConnection.Close();
                 return AddTime((float)stopwatch.Elapsed.TotalHours);
             }
+           
         }
     }
 
