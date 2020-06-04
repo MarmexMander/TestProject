@@ -334,6 +334,17 @@ namespace TestProject
                 catch { return -1; }
             }
 
+            static public int getIdByFullName(string FullName)
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select id from users where FullName = '{FullName}'", sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                reader.Read();
+                try { return (int)reader["Id"]; }
+                catch { return -1; }
+            }
+
             public bool Save()
             {
                 if (id == -1)

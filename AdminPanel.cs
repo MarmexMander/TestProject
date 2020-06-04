@@ -15,6 +15,27 @@ namespace TestProject
         public Form1()
         {
             InitializeComponent();
+            List<Database.User> arr = new List<Database.User>();
+            arr = Database.Users.GetUsers();
+            foreach (Database.User u in arr)
+            {
+                listBox1.Items.Add(u.FullName);
+            }
+            listBox1.ContextMenuStrip = contextMenuStrip1;
+            contextMenuStrip1.Items[0].Click += Form1_Click;
+            contextMenuStrip1.Items[1].Click += Form1_Click1;
+        }
+
+        private void Form1_Click1(object sender, EventArgs e)
+        {
+            int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
+            Database.Users.remove(id);
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            SignupForm sgf = new SignupForm();
+            sgf.Show();
         }
     }
 }
