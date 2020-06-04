@@ -294,7 +294,7 @@ namespace TestProject
                     SqlDataReader reader = sql.ExecuteReader();
                     reader.Read();
                     this.id = (int)reader["Id"];
-                    reprimentQuantity = (int)reader["ReprimantQantity"];
+                    reprimentQuantity = (int)reader["ReprimantQuantity"];
                     fullName = reader["FullName"].ToString();
                     addres = reader["Addres"].ToString();
                     email = reader["Email"].ToString();
