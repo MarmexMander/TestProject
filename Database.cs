@@ -299,7 +299,7 @@ namespace TestProject
                     addres = reader["Addres"].ToString();
                     email = reader["Email"].ToString();
                     position = reader["Position"].ToString();
-                    departament = reader["Departament"].ToString();
+                    departament = reader["Department"].ToString();
                     phoneNumber = reader["PhoneNumber"].ToString();
                     password = reader["Password"].ToString();
                     role = (bool)reader["Role"];
