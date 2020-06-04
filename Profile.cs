@@ -20,5 +20,10 @@ namespace TestProject
             telNumberLabel.Text = user.PhoneNumber;
             emailLabel.Text = user.Email;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
