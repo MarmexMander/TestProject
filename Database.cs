@@ -270,24 +270,41 @@ namespace TestProject
             }
             public User(int id)
             {
-
-                SqlConnection sqlConnection = new SqlConnection(connectionstr);
-                sqlConnection.Open();
-                SqlCommand sql = new SqlCommand($"Select * from users where Id = " + id, sqlConnection);
-                SqlDataReader reader = sql.ExecuteReader();
-                reader.Read();
-                this.id = (int)reader["Id"];
-                reprimentQuantity = (int)reader["ReprimentQantity"];
-                fullName = reader["FullName"].ToString();
-                addres = reader["Addres"].ToString();
-                email = reader["Email"].ToString();
-                position = reader["Position"].ToString();
-                departament = reader["Departament"].ToString();
-                phoneNumber = reader["PhoneNumber"].ToString();
-                password = reader["Password"].ToString();
-                role = (bool)reader["Role"];
-                wage = (float)reader["Wage"];
-                hours = (float)reader["Hours"];
+                if (id != -1)
+                {
+                    SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                    sqlConnection.Open();
+                    SqlCommand sql = new SqlCommand($"Select * from users where Id = " + id, sqlConnection);
+                    SqlDataReader reader = sql.ExecuteReader();
+                    reader.Read();
+                    this.id = (int)reader["Id"];
+                    reprimentQuantity = (int)reader["ReprimentQantity"];
+                    fullName = reader["FullName"].ToString();
+                    addres = reader["Addres"].ToString();
+                    email = reader["Email"].ToString();
+                    position = reader["Position"].ToString();
+                    departament = reader["Departament"].ToString();
+                    phoneNumber = reader["PhoneNumber"].ToString();
+                    password = reader["Password"].ToString();
+                    role = (bool)reader["Role"];
+                    wage = (float)reader["Wage"];
+                    hours = (float)reader["Hours"];
+                }
+                else
+                {
+                    this.id = -1;
+                    reprimentQuantity = 0;
+                    fullName = "";
+                    addres = "";
+                    email = "";
+                    position = "";
+                    departament = "";
+                    phoneNumber = "";
+                    password = "";
+                    role = false;
+                    wage = 0;
+                    hours = 0;
+                }
             }
             static public int getIdByEmail(string email)
             {
@@ -296,7 +313,8 @@ namespace TestProject
                 SqlCommand sql = new SqlCommand($"Select id from users where Email = '{email}'", sqlConnection);
                 SqlDataReader reader = sql.ExecuteReader();
                 reader.Read();
-                return (int)reader["Id"];
+                try { return (int)reader["Id"]; }
+                catch { return -1; }
             }
 
             public bool Save()
@@ -332,7 +350,13 @@ namespace TestProject
             public static User login(string email, string password)
             {
                 if (Users.login(email, password))
-                    return new User(User.getIdByEmail(email));
+                {
+                    User res = new User(User.getIdByEmail(email));
+                    if (res.Id == -1)
+                        return null;
+                    else
+                        return res;
+                }
                 else return null;
             }
 
