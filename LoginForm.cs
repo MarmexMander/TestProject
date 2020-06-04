@@ -25,7 +25,14 @@ namespace TestProject
                 MessageBox.Show("Введите корректный пароль");
             else
             {
-                //SignupForm signup = new SignupForm(user);
+                Database.User user = Database.User.login(textBox1.Text, textBox2.Text);
+                if (user == null)
+                    MessageBox.Show("Неправильное имя пользователя или пароль");
+                else
+                {
+                    SignupForm signup = new SignupForm(user);
+                    signup.Show();
+                }
             }
         }
     }
