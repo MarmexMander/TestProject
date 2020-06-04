@@ -47,6 +47,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.reprimantQuantituLabel = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TotalWage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label8
@@ -206,11 +208,11 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(47, 223);
+            this.label7.Location = new System.Drawing.Point(9, 223);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.Size = new System.Drawing.Size(96, 13);
             this.label7.TabIndex = 46;
-            this.label7.Text = "Зарплата:";
+            this.label7.Text = "Зарплата за год.:";
             // 
             // reprimantQuantituLabel
             // 
@@ -221,11 +223,31 @@
             this.reprimantQuantituLabel.TabIndex = 45;
             this.reprimantQuantituLabel.Text = "reprimant";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(44, 248);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 13);
+            this.label10.TabIndex = 47;
+            this.label10.Text = "Зарплата :";
+            // 
+            // TotalWage
+            // 
+            this.TotalWage.AutoSize = true;
+            this.TotalWage.Location = new System.Drawing.Point(111, 248);
+            this.TotalWage.Name = "TotalWage";
+            this.TotalWage.Size = new System.Drawing.Size(41, 13);
+            this.TotalWage.TabIndex = 48;
+            this.TotalWage.Text = "label11";
+            // 
             // Profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(286, 335);
+            this.Controls.Add(this.TotalWage);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.reprimantQuantituLabel);
             this.Controls.Add(this.hoursLabel);
@@ -273,5 +295,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label reprimantQuantituLabel;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label TotalWage;
     }
 }
