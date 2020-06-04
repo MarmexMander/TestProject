@@ -12,7 +12,7 @@ namespace TestProject
 {
     public partial class Profile : Form
     {
-        public Profile()
+        public Profile(Database.User user)
         {
             InitializeComponent();
         }
