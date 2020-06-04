@@ -51,7 +51,7 @@ namespace TestProject
                 using (SqlConnection conn = new SqlConnection(connectionstr))
                 {
                     pwd = getHash(pwd);
-                    string sql = $"select * from  users where 'Email' = {email} and 'Password' = {pwd}";
+                    string sql = $"select * from  users where 'Email' = '{email}' and 'Password' = '{pwd}'";
                     SqlCommand comm = new SqlCommand(sql, conn);
                     try
                     {
