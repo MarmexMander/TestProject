@@ -327,6 +327,13 @@ namespace TestProject {
                 return Save();
             }
 
+            public static User login(string email, string password)
+            {
+                if (Users.login(email, password))
+                    return new User(User.getIdByEmail(email));
+                else return null;
+            }
+
             public bool logout()
             {
                 stopwatch.Stop();
