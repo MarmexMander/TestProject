@@ -295,7 +295,7 @@ namespace TestProject
                     SqlDataReader reader = sql.ExecuteReader();
                     reader.Read();
                     this.id = (int)reader["Id"];
-                    reprimentQuantity = (int)reader["ReprimentQantity"];
+                    reprimentQuantity = (int)reader["ReprimantQantity"];
                     fullName = reader["FullName"].ToString();
                     addres = reader["Addres"].ToString();
                     email = reader["Email"].ToString();
@@ -372,7 +372,13 @@ namespace TestProject
                     if (res.Id == -1)
                         return null;
                     else
+                    {
+                        SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                        sqlConnection.Open();
+                        SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({res.Id}, 'login')", sqlConnection);
+                        DataTable dt = new DataTable();
                         return res;
+                    }
                 }
                 else return null;
             }
