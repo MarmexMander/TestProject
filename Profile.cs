@@ -15,6 +15,10 @@ namespace TestProject
         public Profile(Database.User user)
         {
             InitializeComponent();
+            fioLabel.Text = user.FullName;
+            addressLabel.Text = user.Addres;
+            telNumberLabel.Text = user.PhoneNumber;
+            emailLabel.Text = user.Email;
         }
     }
 }
