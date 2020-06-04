@@ -15,7 +15,6 @@ namespace TestProject
         public SignupForm()
         {
             InitializeComponent();
-            //Database.User.register("mykola", "adres", "e-mail", "1", "2", "phone", 100, "test");
         }
     }
 }

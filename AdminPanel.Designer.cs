@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,6 +55,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.додатиКористувачаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.видалитиКористувачаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -70,10 +75,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(15, 55);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(282, 324);
+            this.listBox1.Size = new System.Drawing.Size(282, 316);
             this.listBox1.TabIndex = 1;
             // 
             // label1
@@ -317,9 +321,29 @@
             this.button4.Text = "Вихід";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.додатиКористувачаToolStripMenuItem,
+            this.видалитиКористувачаToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 70);
+            // 
+            // додатиКористувачаToolStripMenuItem
+            // 
+            this.додатиКористувачаToolStripMenuItem.Name = "додатиКористувачаToolStripMenuItem";
+            this.додатиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.додатиКористувачаToolStripMenuItem.Text = "Додати користувача";
+            // 
+            // видалитиКористувачаToolStripMenuItem
+            // 
+            this.видалитиКористувачаToolStripMenuItem.Name = "видалитиКористувачаToolStripMenuItem";
+            this.видалитиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.видалитиКористувачаToolStripMenuItem.Text = "Видалити користувача";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(770, 450);
@@ -352,6 +376,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Name = "Form1";
             this.Text = "Admin";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,6 +410,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem додатиКористувачаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem видалитиКористувачаToolStripMenuItem;
     }
 }
 
