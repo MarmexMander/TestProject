@@ -57,15 +57,11 @@ namespace TestProject
                     {
                         conn.Open();
                         comm.ExecuteNonQuery();
-                        Console.WriteLine("true");
                         return true;
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Error" + ex);
-                        Console.ReadKey();
                         return false;
-
                     }
                 }
 
