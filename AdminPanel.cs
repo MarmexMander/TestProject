@@ -12,7 +12,9 @@ namespace TestProject
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        Form parent;
+        Database.User User;
+        public Form1(Database.User user, Form form)
         {
             InitializeComponent();
             List<Database.User> arr = new List<Database.User>();
@@ -24,6 +26,9 @@ namespace TestProject
             listBox1.ContextMenuStrip = contextMenuStrip1;
             contextMenuStrip1.Items[0].Click += Form1_Click;
             contextMenuStrip1.Items[1].Click += Form1_Click1;
+
+            parent = form;
+            User = user;
         }
 
         private void Form1_Click1(object sender, EventArgs e)
@@ -36,6 +41,13 @@ namespace TestProject
         {
             SignupForm sgf = new SignupForm();
             sgf.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            User.logout();
+            parent.Visible = true;
+            this.Close();
         }
     }
 }
