@@ -293,7 +293,7 @@ namespace TestProject
             {
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
-                SqlCommand sql = new SqlCommand($"Select id from users where Email = " + email, sqlConnection);
+                SqlCommand sql = new SqlCommand($"Select id from users where Email = '{email}'", sqlConnection);
                 SqlDataReader reader = sql.ExecuteReader();
                 reader.Read();
                 return (int)reader["Id"];
