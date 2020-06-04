@@ -44,9 +44,11 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.LogButton);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(16, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 110);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(267, 135);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вход";
@@ -54,51 +56,58 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 48);
+            this.label2.Location = new System.Drawing.Point(17, 59);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(57, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Пароль";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 22);
+            this.label1.Location = new System.Drawing.Point(35, 27);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 3;
             this.label1.Text = "Email";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(64, 45);
+            this.textBox2.Location = new System.Drawing.Point(85, 55);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(130, 20);
+            this.textBox2.Size = new System.Drawing.Size(172, 22);
             this.textBox2.TabIndex = 2;
             this.textBox2.UseSystemPasswordChar = true;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(64, 19);
+            this.textBox1.Location = new System.Drawing.Point(85, 23);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 20);
+            this.textBox1.Size = new System.Drawing.Size(172, 22);
             this.textBox1.TabIndex = 1;
             // 
             // LogButton
             // 
-            this.LogButton.Location = new System.Drawing.Point(64, 81);
+            this.LogButton.Location = new System.Drawing.Point(85, 100);
+            this.LogButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LogButton.Name = "LogButton";
-            this.LogButton.Size = new System.Drawing.Size(75, 23);
+            this.LogButton.Size = new System.Drawing.Size(100, 28);
             this.LogButton.TabIndex = 0;
             this.LogButton.Text = "Войти";
             this.LogButton.UseVisualStyleBackColor = true;
+            this.LogButton.Click += new System.EventHandler(this.LogButton_Click);
             // 
             // Login_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(225, 133);
+            this.ClientSize = new System.Drawing.Size(300, 164);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login_Form";
             this.Text = "Вход";
             this.groupBox1.ResumeLayout(false);

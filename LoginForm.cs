@@ -16,5 +16,17 @@ namespace TestProject
         {
             InitializeComponent();
         }
+
+        private void LogButton_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                MessageBox.Show("Введите корректный e-mail");
+            else if (textBox2.Text == "")
+                MessageBox.Show("Введите корректный пароль");
+            else
+            {
+                //
+            }
+        }
     }
 }
