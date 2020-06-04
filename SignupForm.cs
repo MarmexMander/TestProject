@@ -12,7 +12,7 @@ namespace TestProject
 {
     public partial class SignupForm : Form
     {
-        public SignupForm()
+        public SignupForm(Database.User user)
         {
             InitializeComponent();
             //Database.User.register("mykola", "adres", "e-mail", "1", "2", "phone", 100, "test");

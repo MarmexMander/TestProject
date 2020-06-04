@@ -10,9 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestProject {
+namespace TestProject
+{
 
-    class Database
+    public class Database
     {
         static string getHash(string str)
         {
@@ -24,7 +25,7 @@ namespace TestProject {
         public class Users
         {
 
-           public static bool register(string FullName,bool Role, string address, string email, string pos, string dep, string phone, float wage,float Hours, int reprCount, string pwd)
+            public static bool register(string FullName, bool Role, string address, string email, string pos, string dep, string phone, float wage, float Hours, int reprCount, string pwd)
             {
                 pwd = getHash(pwd);
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
@@ -78,23 +79,23 @@ namespace TestProject {
             }
 
             public static bool logout(int userID)
-        {
-            SqlConnection sqlConnection = new SqlConnection(connectionstr);
-            sqlConnection.Open();
-            SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({userID}, 'logout')", sqlConnection);
-            DataTable dt = new DataTable();
-            try
             {
-                sql.Fill(dt);
-            }
-            catch
-            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({userID}, 'logout')", sqlConnection);
+                DataTable dt = new DataTable();
+                try
+                {
+                    sql.Fill(dt);
+                }
+                catch
+                {
+                    sqlConnection.Close();
+                    return false;
+                }
                 sqlConnection.Close();
-                return false;
+                return true;
             }
-            sqlConnection.Close();
-            return true;
-        }
 
             public static bool remove(int userID)
             {
@@ -269,10 +270,10 @@ namespace TestProject {
             }
             public User(int id)
             {
-                
+
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
-                SqlCommand sql = new SqlCommand($"Select * from users where Id = "+id, sqlConnection);
+                SqlCommand sql = new SqlCommand($"Select * from users where Id = " + id, sqlConnection);
                 SqlDataReader reader = sql.ExecuteReader();
                 reader.Read();
                 this.id = (int)reader["Id"];
@@ -302,7 +303,7 @@ namespace TestProject {
             {
                 if (id == -1)
                 {
-                    return Users.register(fullName,role,addres,email,position,departament,phoneNumber,wage,hours,reprimentQuantity,password);
+                    return Users.register(fullName, role, addres, email, position, departament, phoneNumber, wage, hours, reprimentQuantity, password);
                 }
                 else
                 {
@@ -322,7 +323,8 @@ namespace TestProject {
                 }
             }
 
-            public bool AddTime(float time){
+            public bool AddTime(float time)
+            {
                 hours += time;
                 return Save();
             }

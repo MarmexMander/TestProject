@@ -25,7 +25,7 @@ namespace TestProject
                 MessageBox.Show("Введите корректный пароль");
             else
             {
-                //
+                //SignupForm signup = new SignupForm(user);
             }
         }
     }
