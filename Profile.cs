@@ -12,9 +12,18 @@ namespace TestProject
 {
     public partial class Profile : Form
     {
-        public Profile()
+        public Profile(Database.User user)
         {
             InitializeComponent();
+            fioLabel.Text = user.FullName;
+            addressLabel.Text = user.Addres;
+            telNumberLabel.Text = user.PhoneNumber;
+            emailLabel.Text = user.Email;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

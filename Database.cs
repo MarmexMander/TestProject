@@ -28,6 +28,7 @@ namespace TestProject
             public static bool register(string FullName, bool Role, string address, string email, string pos, string dep, string phone, float wage, float Hours, int reprCount, string pwd)
             {
                 pwd = getHash(pwd);
+                Hours = (int)Hours;
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
                 SqlDataAdapter sql = new SqlDataAdapter($"Insert into users(FullName, Role, Addres, Email, Position, Department, PhoneNumber, Wage, Hours, ReprimantQuantity, Password) VALUES('{FullName}','{Role}','{address}','{email}','{pos}','{dep}','{phone}','{wage}','{Hours}','{reprCount}','{pwd}')", sqlConnection);
@@ -57,7 +58,6 @@ namespace TestProject
                     {
                         conn.Open();
                         comm.ExecuteNonQuery();
-                        MessageBox.Show("true");
                         return true;
                     }
                     catch (Exception ex)
@@ -295,17 +295,17 @@ namespace TestProject
                     SqlDataReader reader = sql.ExecuteReader();
                     reader.Read();
                     this.id = (int)reader["Id"];
-                    reprimentQuantity = (int)reader["ReprimentQantity"];
+                    reprimentQuantity = (int)reader["ReprimantQuantity"];
                     fullName = reader["FullName"].ToString();
                     addres = reader["Addres"].ToString();
                     email = reader["Email"].ToString();
                     position = reader["Position"].ToString();
-                    departament = reader["Departament"].ToString();
+                    departament = reader["Department"].ToString();
                     phoneNumber = reader["PhoneNumber"].ToString();
                     password = reader["Password"].ToString();
                     role = (bool)reader["Role"];
-                    wage = (float)reader["Wage"];
-                    hours = (float)reader["Hours"];
+                    wage = (float)((double)reader["Wage"]);
+                    hours = (float)((int)reader["Hours"]);
                 }
                 else
                 {
@@ -383,7 +383,13 @@ namespace TestProject
                     if (res.Id == -1)
                         return null;
                     else
+                    {
+                        SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                        sqlConnection.Open();
+                        SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({res.Id}, 'login')", sqlConnection);
+                        DataTable dt = new DataTable();
                         return res;
+                    }
                 }
                 else return null;
             }
