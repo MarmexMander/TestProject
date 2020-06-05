@@ -25,7 +25,7 @@ namespace TestProject
             positionLabel.Text = user.Position;
             hoursLabel.Text = user.Hours.ToString();
             reprimantQuantituLabel.Text = user.ReprimentQuantity.ToString();
-            salaryLabel.Text = "хз";
+            salaryLabel.Text = user.Wage.ToString();
             TotalWage.Text = (user.Wage * user.Hours).ToString();
             User = user;
             parent = form;
