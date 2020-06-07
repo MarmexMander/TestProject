@@ -371,6 +371,7 @@ namespace TestProject
                         sqlConnection.Open();
                         SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({res.Id}, 'login')", sqlConnection);
                         DataTable dt = new DataTable();
+                        res.stopwatch.Start();
                         return res;
                     }
                 }
