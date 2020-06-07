@@ -68,7 +68,7 @@ namespace TestProject
             Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
             if (listBox1.SelectedItem != null)
             {
-                user.calcWage();
+                MessageBox.Show($"Нараховано зарплату в розмірі {user.calcWage()}UAH.");
             }
         }
 

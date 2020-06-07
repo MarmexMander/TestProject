@@ -406,7 +406,8 @@ namespace TestProject
                 DataTable dt = new DataTable();
                 Hours = 0;
                 Save();
-                return wage;
+                float percent = wage * (reprimentQuantity * 5)/100;
+                return wage-percent;
             }
 
         }
