@@ -17,24 +17,25 @@ namespace TestProject
             InitializeComponent();
         }
 
-        private bool button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (fioBox.Text != "" && addressBox.Text != "" && telNumberBox.Text != "" && emailBox.Text != "" && departmentBox.Text != "" && positionBox.Text != "" && salaryBox.Text != "" && passwordBox.Text != "")
             {
 
                 if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
                 {
-                    return true;
+                    MessageBox.Show("User registered");
+                    this.Close();
                 }
                  else
                 {
-                    return false;
+                    MessageBox.Show("Some error in database");
                 }
             }
             else
             {
                 MessageBox.Show("Все поля обязательны.");
-                return false;
+               
             }
         }
     }
