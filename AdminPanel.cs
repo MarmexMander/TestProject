@@ -33,8 +33,11 @@ namespace TestProject
 
         private void Form1_Click1(object sender, EventArgs e)
         {
-            int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
-            Database.Users.remove(id);
+            if (listBox1.SelectedItem != null)
+            {
+                int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
+                Database.Users.remove(id);
+            }
         }
 
         private void Form1_Click(object sender, EventArgs e)
