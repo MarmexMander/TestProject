@@ -78,24 +78,7 @@ namespace TestProject
 
             }
 
-            public static bool logout(int userID)
-        {
-            SqlConnection sqlConnection = new SqlConnection(connectionstr);
-            sqlConnection.Open();
-            SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({userID}, 'logout')", sqlConnection);
-            DataTable dt = new DataTable();
-            try
-            {
-                sql.Fill(dt);
-            }
-            catch
-            {
-                sqlConnection.Close();
-                return false;
-            }
-            sqlConnection.Close();
-            return true;
-        }
+            
 
             public static bool remove(int userID)
             {
@@ -323,7 +306,7 @@ namespace TestProject
                     hours = 0;
                 }
             }
-            static public int getIdByEmail(string email)
+            public static int getIdByEmail(string email)
             {
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
@@ -334,7 +317,7 @@ namespace TestProject
                 catch { return -1; }
             }
 
-            static public int getIdByFullName(string FullName)
+            public static int getIdByFullName(string FullName)
             {
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
@@ -413,7 +396,19 @@ namespace TestProject
                 sqlConnection.Close();
                 return AddTime((float)stopwatch.Elapsed.TotalHours);
             }
-           
+            
+            public float calcWage()
+            {
+                float wage = (Wage * Hours);
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({Id}, 'Нарахування ЗП у розмірі {wage}UAH')", sqlConnection);
+                DataTable dt = new DataTable();
+                Hours = 0;
+                Save();
+                return wage;
+            }
+
         }
     }
 

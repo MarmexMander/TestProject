@@ -49,5 +49,43 @@ namespace TestProject
             parent.Visible = true;
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Database.User user = listBox1.SelectedItem as Database.User;
+            if (listBox1.SelectedItem != null)
+            {
+                user.ReprimentQuantity++;
+                user.Save();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
+            if (listBox1.SelectedItem != null)
+            {
+                user.calcWage();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
+            label12.Text = user.FullName;
+            label14.Text = user.PhoneNumber;
+            label15.Text = user.Addres;
+            label16.Text = user.Email;
+            label17.Text = user.Position;
+            label18.Text = user.Departament;
+            label19.Text = user.Wage.ToString();
+            label20.Text = user.ReprimentQuantity.ToString();
+            label21.Text = user.calcWage().ToString();
+        }
     }
 }

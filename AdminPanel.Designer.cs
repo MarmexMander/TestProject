@@ -71,15 +71,16 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Присутні на роботі";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
             this.listBox1.Location = new System.Drawing.Point(15, 55);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(282, 308);
+            this.listBox1.Size = new System.Drawing.Size(282, 303);
             this.listBox1.TabIndex = 1;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -301,6 +302,7 @@
             this.button2.TabIndex = 23;
             this.button2.Text = "Нарахувати З/П";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -312,6 +314,7 @@
             this.button3.TabIndex = 24;
             this.button3.Text = "Догана";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -330,23 +333,23 @@
             this.додатиКористувачаToolStripMenuItem,
             this.видалитиКористувачаToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(235, 52);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 48);
             // 
             // додатиКористувачаToolStripMenuItem
             // 
             this.додатиКористувачаToolStripMenuItem.Name = "додатиКористувачаToolStripMenuItem";
-            this.додатиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
+            this.додатиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.додатиКористувачаToolStripMenuItem.Text = "Додати користувача";
             // 
             // видалитиКористувачаToolStripMenuItem
             // 
             this.видалитиКористувачаToolStripMenuItem.Name = "видалитиКористувачаToolStripMenuItem";
-            this.видалитиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(234, 24);
+            this.видалитиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.видалитиКористувачаToolStripMenuItem.Text = "Видалити користувача";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(770, 450);
