@@ -399,7 +399,7 @@ namespace TestProject
             {
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
-                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Нарахування ЗП у розмірі {calcWage()}UAH')", sqlConnection);
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Gived wage:  {calcWage()}UAH')", sqlConnection);
                 DataTable dt = new DataTable();
                 try
                 {
