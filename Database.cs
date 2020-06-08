@@ -338,7 +338,7 @@ namespace TestProject
                 {
                     SqlConnection sqlConnection = new SqlConnection(connectionstr);
                     sqlConnection.Open();
-                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = '{fullName}', Role = '{role}', Addres = '{addres}', Email = '{email}', Position = '{position}', Department = '{departament}', PhoneNumber = '{phoneNumber}', Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = '{password}' where id = {this.id}", sqlConnection);
+                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = '{fullName}', Role = '{role}', Addres = '{addres}', Email = '{email}', Position = '{position}', Department = '{departament}', PhoneNumber = '{phoneNumber}', Wage = {wage}, Hours = {(int)hours}, ReprimantQuantity = {reprimentQuantity}, Password = '{password}' where id = {this.id}", sqlConnection);
                     try
                     {
                         sqlCmd.ExecuteNonQuery();
@@ -384,14 +384,15 @@ namespace TestProject
                 stopwatch.Stop();
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
-                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({id}, 'logout')", sqlConnection);
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({id}, 'logout')", sqlConnection);
                 DataTable dt = new DataTable();
                 try
                 {
                     sql.Fill(dt);
                 }
-                catch
+                catch(Exception e)
                 {
+                    MessageBox.Show(e.Message);
                     sqlConnection.Close();
                     return false;
                 }
