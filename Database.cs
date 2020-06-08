@@ -122,9 +122,16 @@ namespace TestProject
         {
             int id, reprimentQuantity;
             string fullName, addres, email, position, departament, phoneNumber, password;
-            bool role;
+            bool role, isLogged;
             float wage, hours;
             Stopwatch stopwatch = new Stopwatch();
+            public bool IsLogged
+            {
+                get
+                {
+                    return isLogged;
+                }
+            }
             public string FullName
             {
                 get
@@ -372,8 +379,17 @@ namespace TestProject
                         sqlConnection.Open();
                         SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({res.Id}, 'login')", sqlConnection);
                         DataTable dt = new DataTable();
-                        sql.Fill(dt);
+                        try
+                        {
+                            sql.Fill(dt);
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                            sqlConnection.Close();
+                        }
                         res.stopwatch.Start();
+                        res.isLogged = true;
                         return res;
                     }
                 }
@@ -385,12 +401,22 @@ namespace TestProject
                 sqlConnection.Open();
                 SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Нарахування ЗП у розмірі {calcWage()}UAH')", sqlConnection);
                 DataTable dt = new DataTable();
-                sql.Fill(dt);
+                try
+                {
+                    sql.Fill(dt);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    sqlConnection.Close();
+                }
                 Hours = 0;
                 Save();
             }
             public bool logout()
             {
+                if (!isLogged)
+                    return true;
                 stopwatch.Stop();
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
@@ -407,6 +433,7 @@ namespace TestProject
                     return false;
                 }
                 sqlConnection.Close();
+                isLogged = false;
                 return AddTime((float)stopwatch.Elapsed.TotalHours);
             }
             
