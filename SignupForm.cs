@@ -12,9 +12,11 @@ namespace TestProject
 {
     public partial class SignupForm : Form
     {
-        public SignupForm()
+        Form1 f;
+        public SignupForm(Form1 f)
         {
             InitializeComponent();
+            this.f = f; 
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -25,6 +27,7 @@ namespace TestProject
                 if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
                 {
                     MessageBox.Show("User registered");
+                    f.update();
                     this.Close();
                 }
                  else

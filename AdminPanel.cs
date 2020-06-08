@@ -17,18 +17,25 @@ namespace TestProject
         public Form1(Database.User user, Form form)
         {
             InitializeComponent();
-            List<Database.User> arr = new List<Database.User>();
-            arr = Database.Users.GetUsers();
-            foreach (Database.User u in arr)
-            {
-                listBox1.Items.Add(u.FullName);
-            }
+            update();
             listBox1.ContextMenuStrip = contextMenuStrip1;
             contextMenuStrip1.Items[0].Click += Form1_Click;
             contextMenuStrip1.Items[1].Click += Form1_Click1;
 
             parent = form;
             User = user;
+        }
+
+        public void update()
+        {
+            
+            List<Database.User> arr = new List<Database.User>();
+            arr = Database.Users.GetUsers();
+            listBox1.Items.Clear();
+            foreach (Database.User u in arr)
+            {
+                listBox1.Items.Add(u.FullName);
+            }
         }
 
         private void Form1_Click1(object sender, EventArgs e)
@@ -38,11 +45,12 @@ namespace TestProject
                 int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
                 Database.Users.remove(id);
             }
+            update();
         }
 
         private void Form1_Click(object sender, EventArgs e)
         {
-            SignupForm sgf = new SignupForm();
+            SignupForm sgf = new SignupForm(this);
             sgf.Show();
         }
 
