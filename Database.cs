@@ -338,7 +338,7 @@ namespace TestProject
                 {
                     SqlConnection sqlConnection = new SqlConnection(connectionstr);
                     sqlConnection.Open();
-                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = '{fullName}', Role = '{role}', Addres = '{addres}', Email = '{email}', Position = '{position}', Department = '{departament}', PhoneNumber = '{phoneNumber}', Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = '{password}'", sqlConnection);
+                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = '{fullName}', Role = '{role}', Addres = '{addres}', Email = '{email}', Position = '{position}', Department = '{departament}', PhoneNumber = '{phoneNumber}', Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = '{password}' where id = {this.id}", sqlConnection);
                     try
                     {
                         sqlCmd.ExecuteNonQuery();
