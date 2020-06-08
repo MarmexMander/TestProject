@@ -370,7 +370,7 @@ namespace TestProject
                     {
                         SqlConnection sqlConnection = new SqlConnection(connectionstr);
                         sqlConnection.Open();
-                        SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({res.Id}, 'login')", sqlConnection);
+                        SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({res.Id}, 'login')", sqlConnection);
                         DataTable dt = new DataTable();
                         res.stopwatch.Start();
                         return res;
@@ -405,7 +405,7 @@ namespace TestProject
                 float wage = (Wage * Hours);
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
-                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging values({Id}, 'Нарахування ЗП у розмірі {wage}UAH')", sqlConnection);
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Нарахування ЗП у розмірі {wage}UAH')", sqlConnection);
                 DataTable dt = new DataTable();
                 Hours = 0;
                 Save();
