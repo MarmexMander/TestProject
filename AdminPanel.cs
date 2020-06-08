@@ -58,7 +58,8 @@ namespace TestProject
             Database.User user = listBox1.SelectedItem as Database.User;
             if (listBox1.SelectedItem != null)
             {
-                user.ReprimentQuantity++;
+                try { user.ReprimentQuantity++; }
+                catch { user.ReprimentQuantity = 1; }
                 user.Save();
             }
         }
