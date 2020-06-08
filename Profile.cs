@@ -37,5 +37,12 @@ namespace TestProject
             parent.Visible = true;
             this.Close();
         }
+
+        private void Profile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            User.logout();
+            parent.Visible = true;
+            this.Close();
+        }
     }
 }

@@ -79,12 +79,7 @@ namespace TestProject
             {
                 Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
                 buff = user.calcWage();
-                user.Hours = 0;
-                if (!user.Save())
-                {
-                    MessageBox.Show("Помилка під час збереження у базі данних.");
-                    return;
-                };
+                user.giveWage();
                 MessageBox.Show($"Нараховано зарплату в розмірі {buff}UAH.");
             }
         }
@@ -109,6 +104,13 @@ namespace TestProject
                 label20.Text = user.ReprimentQuantity.ToString();
                 label21.Text = user.calcWage().ToString();
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            User.logout();
+            parent.Visible = true;
+            this.Close();
         }
     }
 }

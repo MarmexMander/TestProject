@@ -269,6 +269,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Profile";
             this.Text = "User Profile";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Profile_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

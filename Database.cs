@@ -372,13 +372,23 @@ namespace TestProject
                         sqlConnection.Open();
                         SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({res.Id}, 'login')", sqlConnection);
                         DataTable dt = new DataTable();
+                        sql.Fill(dt);
                         res.stopwatch.Start();
                         return res;
                     }
                 }
                 else return null;
             }
-
+            public void giveWage()
+            {
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Нарахування ЗП у розмірі {calcWage()}UAH')", sqlConnection);
+                DataTable dt = new DataTable();
+                sql.Fill(dt);
+                Hours = 0;
+                Save();
+            }
             public bool logout()
             {
                 stopwatch.Stop();
@@ -403,12 +413,6 @@ namespace TestProject
             public float calcWage()
             {
                 float wage = (Wage * Hours);
-                SqlConnection sqlConnection = new SqlConnection(connectionstr);
-                sqlConnection.Open();
-                SqlDataAdapter sql = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'Нарахування ЗП у розмірі {wage}UAH')", sqlConnection);
-                DataTable dt = new DataTable();
-                Hours = 0;
-                Save();
                 float percent = wage * (reprimentQuantity * 5)/100;
                 return wage-percent;
             }
