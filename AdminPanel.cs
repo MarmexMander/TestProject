@@ -79,16 +79,19 @@ namespace TestProject
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
-            label12.Text = user.FullName;
-            label14.Text = user.PhoneNumber;
-            label15.Text = user.Addres;
-            label16.Text = user.Email;
-            label17.Text = user.Position;
-            label18.Text = user.Departament;
-            label19.Text = user.Wage.ToString();
-            label20.Text = user.ReprimentQuantity.ToString();
-            label21.Text = user.calcWage().ToString();
+            if (listBox1.SelectedItem != null)
+            {
+                Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
+                label12.Text = user.FullName;
+                label14.Text = user.PhoneNumber;
+                label15.Text = user.Addres;
+                label16.Text = user.Email;
+                label17.Text = user.Position;
+                label18.Text = user.Departament;
+                label19.Text = user.Wage.ToString();
+                label20.Text = user.ReprimentQuantity.ToString();
+                label21.Text = user.calcWage().ToString();
+            }
         }
     }
 }
