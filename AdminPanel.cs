@@ -66,9 +66,9 @@ namespace TestProject
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
             if (listBox1.SelectedItem != null)
             {
+                Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
                 MessageBox.Show($"Нараховано зарплату в розмірі {user.calcWage()}UAH.");
             }
         }
