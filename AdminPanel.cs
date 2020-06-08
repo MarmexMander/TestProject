@@ -55,9 +55,10 @@ namespace TestProject
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
             if (listBox1.SelectedItem != null)
             {
+            Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
+            
                 user.ReprimentQuantity++;
                 user.Save();
             }
