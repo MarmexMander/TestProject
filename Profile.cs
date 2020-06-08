@@ -42,7 +42,6 @@ namespace TestProject
         {
             User.logout();
             parent.Visible = true;
-            this.Close();
         }
     }
 }
