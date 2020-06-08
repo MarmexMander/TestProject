@@ -58,18 +58,25 @@ namespace TestProject
             Database.User user = listBox1.SelectedItem as Database.User;
             if (listBox1.SelectedItem != null)
             {
-                try { user.ReprimentQuantity++; }
-                catch { user.ReprimentQuantity = 1; }
+                user.ReprimentQuantity++;
                 user.Save();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            float buff = 0;
             if (listBox1.SelectedItem != null)
             {
                 Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
-                MessageBox.Show($"Нараховано зарплату в розмірі {user.calcWage()}UAH.");
+                buff = user.calcWage();
+                user.Hours = 0;
+                if (!user.Save())
+                {
+                    MessageBox.Show("Помилка під час збереження у базі данних.");
+                    return;
+                };
+                MessageBox.Show($"Нараховано зарплату в розмірі {buff}UAH.");
             }
         }
 

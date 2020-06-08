@@ -338,13 +338,14 @@ namespace TestProject
                 {
                     SqlConnection sqlConnection = new SqlConnection(connectionstr);
                     sqlConnection.Open();
-                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = {fullName}, Role = {role}, Addres = {addres}, Email = {email}, Position = {position}, Department = {departament}, PhoneNumber = {phoneNumber}, Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = {password}", sqlConnection);
+                    SqlCommand sqlCmd = new SqlCommand($"UPDATE users SET FullName = '{fullName}', Role = '{role}', Addres = '{addres}', Email = '{email}', Position = '{position}', Department = '{departament}', PhoneNumber = '{phoneNumber}', Wage = {wage}, Hours = {hours}, ReprimantQuantity = {reprimentQuantity}, Password = '{password}'", sqlConnection);
                     try
                     {
                         sqlCmd.ExecuteNonQuery();
                     }
-                    catch
+                    catch(Exception e)
                     {
+                        MessageBox.Show(e.Message);
                         sqlConnection.Close();
                         return false;
                     }
