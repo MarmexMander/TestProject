@@ -49,25 +49,26 @@ namespace TestProject
 
             public static bool login(string email, string pwd)
             {
-                using (SqlConnection conn = new SqlConnection(connectionstr))
-                {
-                    pwd = getHash(pwd);
-                    string sql = $"select * from  users where 'Email' = '{email}' and 'Password' = '{pwd}'";
-                    SqlCommand comm = new SqlCommand(sql, conn);
-                    try
-                    {
-                        conn.Open();
-                        comm.ExecuteNonQuery();
-                        return true;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error" + ex);
-                        //Console.ReadKey();
-                        return false;
 
-                    }
+                pwd = getHash(pwd);
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"select * from  users where Email = '{email}' and Cast(Password as varchar(max)) = '{pwd}'", sqlConnection);
+                SqlDataReader reader;
+                try
+                {
+                    reader = sql.ExecuteReader();
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error " + ex);
+                    //Console.ReadKey();
+                    return false;
+
+                }
+                if (reader.Read())
+                    return true;
+                return false;
 
             }
 
@@ -78,7 +79,7 @@ namespace TestProject
 
             }
 
-            
+
 
             public static bool remove(int userID)
             {
@@ -104,7 +105,7 @@ namespace TestProject
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);
                 sqlConnection.Open();
                 SqlCommand sql = new SqlCommand($"Select id from users", sqlConnection);
-                
+
                 SqlDataReader reader = sql.ExecuteReader();
                 while (reader.Read())
                 {
@@ -113,7 +114,7 @@ namespace TestProject
                 }
                 return users;
 
-               
+
             }
 
         }
@@ -350,7 +351,7 @@ namespace TestProject
                     {
                         sqlCmd.ExecuteNonQuery();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                         sqlConnection.Close();
@@ -426,7 +427,7 @@ namespace TestProject
                 {
                     sql.Fill(dt);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                     sqlConnection.Close();
@@ -436,12 +437,12 @@ namespace TestProject
                 isLogged = false;
                 return AddTime((float)stopwatch.Elapsed.TotalHours);
             }
-            
+
             public float calcWage()
             {
                 float wage = (Wage * Hours);
-                float percent = wage * (reprimentQuantity * 5)/100;
-                return wage-percent;
+                float percent = wage * (reprimentQuantity * 5) / 100;
+                return wage - percent;
             }
 
         }
