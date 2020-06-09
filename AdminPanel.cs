@@ -51,7 +51,7 @@ namespace TestProject
         private void Form1_Click(object sender, EventArgs e)
         {
             SignupForm sgf = new SignupForm(this);
-            sgf.Show();
+            sgf.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
