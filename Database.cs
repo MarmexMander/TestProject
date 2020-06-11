@@ -72,19 +72,7 @@ namespace TestProject
 
             }
 
-            public List<Repriment> GetReprments()
-            {
-                List<Repriment> repriments = new List<Repriment>();
-                SqlConnection sqlConnection = new SqlConnection(connectionstr);
-                sqlConnection.Open();
-                SqlCommand sql = new SqlCommand($"Select * from repriments", sqlConnection);
-                SqlDataReader reader = sql.ExecuteReader();
-                while (reader.Read())
-                {
-                    repriments.Add(new Repriment(reader));
-                }
-                return repriments;
-            }
+           
 
             public static int calcWage(int userID)
             {
@@ -171,6 +159,39 @@ namespace TestProject
                     MessageBox.Show(e.Message);
                     id = -1;
                 }
+            }
+            public Repriment(int id)
+            {
+                if (id != -1)
+                {
+                    SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                    sqlConnection.Open();
+                    SqlCommand sql = new SqlCommand($"Select * from repriments where Id = " + id, sqlConnection);
+                    SqlDataReader reader = sql.ExecuteReader();
+                    reader.Read();
+                    this.id = (int)reader["Id"];
+                    text = (string)reader["Text"];
+                    user_id = (int)reader["UserId"];
+                }
+                else
+                {
+                    this.id = -1;
+                    text = "";
+                    user_id = -1;
+                }
+            }
+            public static List<Repriment> GetRepriments()
+            {
+                List<Repriment> repriments = new List<Repriment>();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select * from repriments", sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                while (reader.Read())
+                {
+                    repriments.Add(new Repriment(reader));
+                }
+                return repriments;
             }
         }
 
@@ -329,7 +350,7 @@ namespace TestProject
                 hours = 0;
             }
 
-            public List<Repriment> GetUserReprments()
+            public List<Repriment> GetUserRepriments()
             {
                 List<Repriment> repriments = new List<Repriment>();
                 SqlConnection sqlConnection = new SqlConnection(connectionstr);

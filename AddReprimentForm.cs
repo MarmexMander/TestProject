@@ -23,7 +23,10 @@ namespace TestProject
         private void button1_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length >= 5)
+            {
                 user.addRepriment(textBox1.Text);
+                this.Close();
+            }
             else
                 MessageBox.Show("Repriment text too short");
         }

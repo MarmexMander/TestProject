@@ -58,6 +58,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.додатиКористувачаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.видалитиКористувачаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -331,21 +332,28 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.додатиКористувачаToolStripMenuItem,
-            this.видалитиКористувачаToolStripMenuItem});
+            this.видалитиКористувачаToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(239, 70);
             // 
             // додатиКористувачаToolStripMenuItem
             // 
             this.додатиКористувачаToolStripMenuItem.Name = "додатиКористувачаToolStripMenuItem";
-            this.додатиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.додатиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.додатиКористувачаToolStripMenuItem.Text = "Додати користувача";
             // 
             // видалитиКористувачаToolStripMenuItem
             // 
             this.видалитиКористувачаToolStripMenuItem.Name = "видалитиКористувачаToolStripMenuItem";
-            this.видалитиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.видалитиКористувачаToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
             this.видалитиКористувачаToolStripMenuItem.Text = "Видалити користувача";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(238, 22);
+            this.toolStripMenuItem1.Text = "Показати догани користувача";
             // 
             // Form1
             // 
@@ -420,6 +428,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem додатиКористувачаToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem видалитиКористувачаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
 

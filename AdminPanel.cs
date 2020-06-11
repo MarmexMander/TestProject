@@ -21,11 +21,15 @@ namespace TestProject
             listBox1.ContextMenuStrip = contextMenuStrip1;
             contextMenuStrip1.Items[0].Click += Form1_Click;
             contextMenuStrip1.Items[1].Click += Form1_Click1;
-
+            contextMenuStrip1.Items[2].Click += CM2_Click;
             parent = form;
             User = user;
         }
-
+        void CM2_Click(object sender, EventArgs e)
+        {
+            int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
+            new ShowReprimentsForm(id).Show();
+        }
         public void update()
         {
             
