@@ -27,8 +27,13 @@ namespace TestProject
         }
         void CM2_Click(object sender, EventArgs e)
         {
-            int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
-            new ShowReprimentsForm(id).Show();
+            if (listBox1.SelectedItem != null)
+            {
+                int id = Database.User.getIdByFullName(listBox1.SelectedItem.ToString());
+                new ShowReprimentsForm(id).Show();
+            }
+            else
+                new ShowReprimentsForm().Show();
         }
         public void update()
         {
