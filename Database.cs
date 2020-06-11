@@ -72,6 +72,20 @@ namespace TestProject
 
             }
 
+            public List<Repriment> GetReprments()
+            {
+                List<Repriment> repriments = new List<Repriment>();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select * from repriments", sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                while (reader.Read())
+                {
+                    repriments.Add(new Repriment(reader));
+                }
+                return repriments;
+            }
+
             public static int calcWage(int userID)
             {
                 User user = new User(userID);
@@ -118,6 +132,48 @@ namespace TestProject
             }
 
         }
+
+        public class Repriment
+        {
+            int id, user_id;
+            string text;
+            public int Id
+            {
+                get
+                {
+                    return id;
+                }
+            }
+            public int UserId
+            {
+                get
+                {
+                    return user_id;
+                }
+            }
+            public string Text
+            {
+                get
+                {
+                    return text;
+                }
+            }
+            public Repriment(SqlDataReader reader)
+            {
+                try
+                {
+                    id = (int)reader["id"];
+                    user_id = (int)reader["UserId"];
+                    text = (string)reader["Text"];
+                }
+                catch(Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    id = -1;
+                }
+            }
+        }
+
 
         public class User
         {
@@ -256,10 +312,6 @@ namespace TestProject
                 {
                     return reprimentQuantity;
                 }
-                set
-                {
-                    reprimentQuantity = value;
-                }
             }
             public User()
             {
@@ -275,6 +327,44 @@ namespace TestProject
                 role = false;
                 wage = 0;
                 hours = 0;
+            }
+
+            public List<Repriment> GetUserReprments()
+            {
+                List<Repriment> repriments = new List<Repriment>();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlCommand sql = new SqlCommand($"Select * from repriments where UserId = {id}", sqlConnection);
+                SqlDataReader reader = sql.ExecuteReader();
+                while (reader.Read())
+                {
+                    repriments.Add(new Repriment(reader));
+                }
+                return repriments;
+            }
+
+            public bool addRepriment(string text)
+            {
+                reprimentQuantity++;
+                Save();
+                SqlConnection sqlConnection = new SqlConnection(connectionstr);
+                sqlConnection.Open();
+                SqlDataAdapter sql = new SqlDataAdapter($"Insert into repriments(UserId, Text) VALUES({id},'{text}')", sqlConnection);
+                SqlDataAdapter sql2 = new SqlDataAdapter($@"insert into logging(UserId, Evant) values({Id}, 'got_reprim')", sqlConnection);
+                DataTable dt = new DataTable();
+                try
+                {
+                    sql.Fill(dt);
+                    sql2.Fill(dt);
+                }
+                catch(Exception e)
+                {
+                    sqlConnection.Close();
+                    MessageBox.Show(e.Message);
+                    return false;
+                }
+
+                return true;
             }
             public User(int id)
             {

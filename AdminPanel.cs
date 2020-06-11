@@ -66,9 +66,8 @@ namespace TestProject
             if (listBox1.SelectedItem != null)
             {
             Database.User user = new Database.User(Database.User.getIdByFullName(listBox1.SelectedItem.ToString()));
-            
-                user.ReprimentQuantity++;
-                user.Save();
+
+                new AddReprimentForm(user).ShowDialog();
             }
         }
 
