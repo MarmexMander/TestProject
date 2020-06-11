@@ -33,9 +33,13 @@ namespace TestProject
                     MatchCollection matches = Regex.Matches(telNumberBox.Text.ToString(), pattern);
                     if (matches[0].Value != null)
                     {
-
-
-                        if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
+                        string m = emailBox.Text;
+                        int l = emailBox.Text.Length;
+                        if (l <= 10 || m[l - 1] != 'm' || m[l - 2] != 'o' || m[l - 3] != 'c' || m[l - 4] != '.' || m[l - 5] != 'l' || m[l - 6] != 'i' || m[l - 7] != 'a' || m[l - 8] != 'm' || m[l - 9] != 'g' || m[l - 10] != '@')
+                        {
+                            MessageBox.Show("Some error in database");
+                        }
+                        else if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
                         {
                             MessageBox.Show("User registered");
                             f.update();
@@ -64,12 +68,13 @@ namespace TestProject
             TextBox tb = sender as TextBox;
             string text = tb.Text;
             if (text != "")
-            foreach(char c in text)
+            for(int i = 0; i < text.Length; i ++)
             {
-                if(!char.IsLetter(c) || !char.IsWhiteSpace(c))
+                if(!char.IsLetter(text[i]) && !char.IsWhiteSpace(text[i]))
                 {
-                        text.Replace(c.ToString(), "");
-                    }
+                       tb.Text = text.Remove(i, 1);
+                        
+                }
             }
 
         }
@@ -79,11 +84,11 @@ namespace TestProject
             TextBox tb = sender as TextBox;
             string text = tb.Text;
             if (text != "")
-                foreach (char c in text)
+                for (int i = 0; i < text.Length; i++)
                 {
-                    if (!char.IsNumber(c))
+                    if (!char.IsNumber(text[i]))
                     {
-                        text.Replace(c.ToString(), "");
+                        tb.Text = text.Remove(i, 1);
                     }
                 }
         }
@@ -93,11 +98,11 @@ namespace TestProject
             TextBox tb = sender as TextBox;
             string text = tb.Text;
             if (text != "")
-                foreach (char c in text)
+                for (int i = 0; i < text.Length; i++)
                 {
-                    if (!char.IsNumber(c) || !char.IsLetter(c))
+                    if (!char.IsNumber(text[i]) && !char.IsLetter(text[i]) && text[i] != '@' && text[i] != '.')
                     {
-                        text.Replace(c.ToString(), "");
+                        tb.Text = text.Remove(i, 1);
                     }
                 }
         }
