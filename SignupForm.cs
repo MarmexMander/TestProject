@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace TestProject
 {
     public partial class SignupForm : Form
     {
+        string pattern = @"[+][3][8]-\d{3}-\d{3}-\d{2}-\d{2}";
         Form1 f;
         public SignupForm(Form1 f)
         {
@@ -23,16 +25,30 @@ namespace TestProject
         {
             if (fioBox.Text != "" && addressBox.Text != "" && telNumberBox.Text != "" && emailBox.Text != "" && departmentBox.Text != "" && positionBox.Text != "" && salaryBox.Text != "" && passwordBox.Text != "")
             {
+                try
+                {
 
-                if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
-                {
-                    MessageBox.Show("User registered");
-                    f.update();
-                    this.Close();
+
+                    MatchCollection matches = Regex.Matches(telNumberBox.Text.ToString(), pattern);
+                    if (matches[0].Value != null)
+                    {
+
+
+                        if (Database.Users.register(fioBox.Text, false, addressBox.Text, emailBox.Text, positionBox.Text, departmentBox.Text, telNumberBox.Text, Convert.ToSingle(salaryBox.Text), 0, 0, passwordBox.Text))
+                        {
+                            MessageBox.Show("User registered");
+                            f.update();
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Some error in database");
+                        }
+                    }
                 }
-                 else
+                catch
                 {
-                    MessageBox.Show("Some error in database");
+                    MessageBox.Show("номер указан не верно");
                 }
             }
             else
