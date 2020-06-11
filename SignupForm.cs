@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace TestProject
 {
@@ -56,6 +57,49 @@ namespace TestProject
                 MessageBox.Show("Все поля обязательны.");
                
             }
+        }
+
+        private void fioBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            string text = tb.Text;
+            if (text != "")
+            foreach(char c in text)
+            {
+                if(!char.IsLetter(c) || !char.IsWhiteSpace(c))
+                {
+                        text.Replace(c.ToString(), "");
+                    }
+            }
+
+        }
+
+        private void salaryBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            string text = tb.Text;
+            if (text != "")
+                foreach (char c in text)
+                {
+                    if (!char.IsNumber(c))
+                    {
+                        text.Replace(c.ToString(), "");
+                    }
+                }
+        }
+
+        private void emailBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            string text = tb.Text;
+            if (text != "")
+                foreach (char c in text)
+                {
+                    if (!char.IsNumber(c) || !char.IsLetter(c))
+                    {
+                        text.Replace(c.ToString(), "");
+                    }
+                }
         }
     }
 }

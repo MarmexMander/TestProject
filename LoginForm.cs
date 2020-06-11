@@ -19,7 +19,9 @@ namespace TestProject
 
         private void LogButton_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            string m = textBox1.Text;
+            int l = textBox1.Text.Length;
+            if (textBox1.Text == "" || textBox1.Text.Length <= 10 || m[l-1] != 'm' || m[l - 2] != 'o' || m[l - 3] != 'c' || m[l - 4] != '.' || m[l - 5] != 'l' || m[l - 6] != 'i' || m[l - 7] != 'a' || m[l - 8] != 'm' || m[l - 9] != 'g' || m[l - 10] != '@')
                 MessageBox.Show("Введите корректный e-mail");
             else if (textBox2.Text == "")
                 MessageBox.Show("Введите корректный пароль");
