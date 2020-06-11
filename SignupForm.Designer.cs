@@ -63,6 +63,7 @@
             this.fioBox.Name = "fioBox";
             this.fioBox.Size = new System.Drawing.Size(157, 20);
             this.fioBox.TabIndex = 1;
+            this.fioBox.TextChanged += new System.EventHandler(this.fioBox_TextChanged);
             // 
             // label1
             // 
@@ -152,6 +153,7 @@
             this.salaryBox.Name = "salaryBox";
             this.salaryBox.Size = new System.Drawing.Size(157, 20);
             this.salaryBox.TabIndex = 11;
+            this.salaryBox.TextChanged += new System.EventHandler(this.salaryBox_TextChanged);
             // 
             // label7
             // 
@@ -185,6 +187,7 @@
             this.emailBox.Name = "emailBox";
             this.emailBox.Size = new System.Drawing.Size(157, 20);
             this.emailBox.TabIndex = 15;
+            this.emailBox.TextChanged += new System.EventHandler(this.emailBox_TextChanged);
             // 
             // SignupForm
             // 
